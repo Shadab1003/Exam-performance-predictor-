@@ -4,6 +4,8 @@ sys.path.insert(1,'D:\\End to end project\\mlproject\\src')
 import logger as lo
 import exception as ex
 import pandas as pd
+import model_trainer as mt
+
 
 from sklearn.model_selection import train_test_split
 from dataclasses import dataclass
@@ -48,5 +50,8 @@ if __name__=="__main__":
     obj=DataIngestion()
     train_data,test_data=obj.initiate_data_ingestion()
 
-data_transformation=dt.DataTransformation()
-data_transformation.initiate_data_transformation(train_data,test_data)
+    data_transformation=dt.DataTransformation()
+    train_arr,test_arr,_=data_transformation.initiate_data_transformation(train_data,test_data)
+
+    modeltrainer=mt.ModelTrainer()
+    print(modeltrainer.initiate_model_trainer(train_arr,test_arr))
